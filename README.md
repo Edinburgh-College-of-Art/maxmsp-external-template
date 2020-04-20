@@ -79,7 +79,7 @@ To edit the property sheets in visual studio:
 
 2. Select the property manager by navigating the menus `View` -> `Other Windows` -> `property manager`
 
-![View -> Other Windows -> property manager](property-manager-nav.png)
+![View -> Other Windows -> property manager](images/property-manager-nav.png)
 
 3. Select a property sheet press <kbd>Alt</kbd> + <kbd>Enter</kbd> or right click and select properties
 
