@@ -85,7 +85,7 @@ void inletAssistant(MaxExternalObject* maxObjectPtr,
     
     switch (message)
     {
-        case inletMessage:
+        case 1: // inletMessage
             switch (arg)
             {
                 case 0:
@@ -98,7 +98,7 @@ void inletAssistant(MaxExternalObject* maxObjectPtr,
                     sprintf(dstString, "some other inlet");
             }
             break;
-        case outletMessage:
+        case 2:  // outletMessage
             switch (arg)
             {
                 case 0:
