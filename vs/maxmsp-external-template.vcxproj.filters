@@ -11,4 +11,7 @@
       <UniqueIdentifier>{16aa4d3c-c1d0-44a4-9f3a-cefdd5739ffd}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="max_extern_common.props" />
+  </ItemGroup>
 </Project>

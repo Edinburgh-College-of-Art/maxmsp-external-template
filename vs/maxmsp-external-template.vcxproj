@@ -269,6 +269,9 @@
     <ClCompile Include="$(C74SUPPORT)\max-includes\common\dllmain_win.c" />
     <ClCompile Include="..\src\mymspextern\main.c" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="max_extern_common.props" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
