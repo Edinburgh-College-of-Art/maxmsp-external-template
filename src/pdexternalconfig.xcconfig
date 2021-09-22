@@ -10,7 +10,7 @@
 PD_PATH = /Applications/Pd-0.49-1.app/
 
 // Product details
-PRODUCT_NAME = mdeGranular~
+PRODUCT_NAME = myExternal
 
 // Paths
 USER_HEADER_SEARCH_PATHS = $(PD_PATH)/Contents/Resources/src

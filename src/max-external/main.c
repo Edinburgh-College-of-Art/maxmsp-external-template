@@ -247,8 +247,9 @@ void coupleMethodsToExternal( t_class* c)
 //------------------------------------------------------------------------------
 int C74_EXPORT main(void)
 {
-    post("hello");
-    t_class* c = class_new("mymspextern~",
+    post("Hello Max External!");
+    
+    t_class* c = class_new("max-external",
                            (method)myExternalConstructor,
                            (method)myExternDestructor,
                            (short)sizeof(MaxExternalObject),
