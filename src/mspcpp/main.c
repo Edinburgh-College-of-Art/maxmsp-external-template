@@ -11,7 +11,8 @@
 #include "ext_obex.h"
 #include "z_dsp.h"
 #include "buffer.h"
-#include "../../src/mspcpp/cpp_files/MattsOscsCinterface.h"
+#include "cpp_files/MattsOscsCinterface.h"
+
 //------------------------------------------------------------------------------
 
 /// void* to the complete new Max External class so that it can be used in the class methods
