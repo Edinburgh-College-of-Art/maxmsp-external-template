@@ -6,11 +6,12 @@
  - mhamilt Mar 2020
  */
 
+
 #include "ext.h"
 #include "ext_obex.h"
 #include "z_dsp.h"
 #include "buffer.h"
-#include "MattsOscsCinterface.h"
+#include "../../src/mspcpp/cpp_files/MattsOscsCinterface.h"
 //------------------------------------------------------------------------------
 
 /// void* to the complete new Max External class so that it can be used in the class methods
@@ -95,7 +96,7 @@ void inletAssistant(MaxExternalObject* maxObjectPtr,
     
     switch (message)
     {
-        case inletMessage:
+        case 1:
             switch (arg)
             {
                 case 0:
@@ -108,7 +109,7 @@ void inletAssistant(MaxExternalObject* maxObjectPtr,
                     sprintf(dstString, "some other inlet");
             }
             break;
-        case outletMessage:
+        case 2:
             switch (arg)
             {
                 case 0:

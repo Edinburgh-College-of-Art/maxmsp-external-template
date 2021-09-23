@@ -270,9 +270,9 @@
     <ClCompile Include="..\src\max-external\main.c" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="max-external\max_extern_common.props" />
-    <None Include="max-external\max_extern_x64.props" />
-    <None Include="max-external\max_extern_x86.props" />
+    <None Include="max_extern_common.props" />
+    <None Include="max_extern_x64.props" />
+    <None Include="max_extern_x86.props" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

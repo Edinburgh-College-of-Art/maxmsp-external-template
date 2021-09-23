@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="..\..\max-sdk-base\c74support\max-includes\common\dllmain_win.c" />
+    <ClCompile Include="..\..\src\mspcpp\cpp_files\MattsOscs.cpp">
+      <Filter>cppfiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\mspcpp\cpp_files\MattsOscsCinterface.cpp">
+      <Filter>cppfiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\mspcpp\main.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="utilities">
+      <UniqueIdentifier>{9fc1180c-98dd-4a9b-95d8-9e3e3086eba1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cppfiles">
+      <UniqueIdentifier>{07fefe54-1fd2-49df-b3e2-e0544ff469d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="props">
+      <UniqueIdentifier>{f90af2bd-ceba-4072-bba2-f02558a040cd}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\mspcpp\cpp_files\MattsOscs.hpp">
+      <Filter>cppfiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\mspcpp\cpp_files\MattsOscsCinterface.h">
+      <Filter>cppfiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\mspcpp\utilities\switch_string.h">
+      <Filter>utilities</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="max_extern_common.props">
+      <Filter>props</Filter>
+    </None>
+    <None Include="max_extern_x64.props">
+      <Filter>props</Filter>
+    </None>
+    <None Include="max_extern_x86.props">
+      <Filter>props</Filter>
+    </None>
+  </ItemGroup>
+</Project>
