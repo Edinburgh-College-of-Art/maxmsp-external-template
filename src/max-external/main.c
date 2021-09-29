@@ -80,12 +80,16 @@ void inletAssistant(MaxExternalObject* maxObjectPtr,
                     long arg,
                     char *dstString)
 {
-    const long  inletMessage = 1;
-    const long outletMessage = 2;
-    
-    switch (message)
+    typedef enum _TypeOfConnectionMessage
     {
-        case 1: // inletMessage
+        inletMessage = 1,
+        outletMessage = 2
+    } TypeOfConnectionMessage;
+    
+    
+    switch ((TypeOfConnectionMessage)message)
+    {
+        case inletMessage:
             switch (arg)
             {
                 case 0:
@@ -98,7 +102,7 @@ void inletAssistant(MaxExternalObject* maxObjectPtr,
                     sprintf(dstString, "some other inlet");
             }
             break;
-        case 2:  // outletMessage
+        case outletMessage:
             switch (arg)
             {
                 case 0:
