@@ -1,6 +1,6 @@
 # maxmsp-external-template
 
-Template Projects for building external objects in MaxMSP
+Template Projects for [building external objects in MaxMSP](https://cycling74.com/sdk/max-sdk-8.2.0/)
 
 <!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
 
