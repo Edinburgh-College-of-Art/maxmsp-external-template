@@ -193,8 +193,7 @@ int C74_EXPORT main(void)
                            0);
     
     coupleMethodsToExternal(c);
-    
-    class_dspinit(c);
+        
     class_register(CLASS_BOX, c);
     
     myExternClass = c;
