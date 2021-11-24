@@ -77,7 +77,7 @@
 				5868BA8D241A6C1600152060 /* maxmspsdk.xcconfig */,
 				585776DC269A484500F90DE8 /* pdexternalconfig.xcconfig */,
 				58567A38242A0A0A00271066 /* max-external */,
-				58F27682274E82F500057984 /* max-external~ */,
+				58F27682274E82F500057984 /* max-external- */,
 				58567A3A242A0A0A00271066 /* mspcpp */,
 			);
 			path = src;
@@ -112,13 +112,13 @@
 			path = cpp_files;
 			sourceTree = "<group>";
 		};
-		58F27682274E82F500057984 /* max-external~ */ = {
+		58F27682274E82F500057984 /* max-external- */ = {
 			isa = PBXGroup;
 			children = (
 				58E75C9A274E89B10097EB2B /* Info.plist */,
 				58E75C99274E89B10097EB2B /* main.c */,
 			);
-			path = "max-external~";
+			path = "max-external-";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
