@@ -11,30 +11,21 @@
 
 // Name & Version
 PRODUCT_NAME = $(TARGET_NAME)
-//PRODUCT_VERSION = 7.0.3
-PRODUCT_VERSION = 7.1.0
-//PRODUCT_VERSION = 7.3.3
-//PRODUCT_VERSION = 8.0.3
-ARCHS = i386 x86_64
-
+PRODUCT_VERSION = 1.0.0
 
 // Paths
 C74SUPPORT = max-sdk-base/c74support
 HEADER_SEARCH_PATHS = "$(C74SUPPORT)/max-includes" "$(C74SUPPORT)/msp-includes" "$(C74SUPPORT)/jit-includes"
 FRAMEWORK_SEARCH_PATHS = "$(C74SUPPORT)/max-includes" "$(C74SUPPORT)/msp-includes" "$(C74SUPPORT)/jit-includes"
 DSTROOT = $(HOME)/Documents/Max 8/Packages/$(TARGET_NAME)/externals/
-
-// (This next path is relative to DSTROOT)
-INSTALL_PATH = ./
-
+INSTALL_PATH = ./ // (This next path is relative to DSTROOT)
 
 // Special Files
 GCC_PREFIX_HEADER = $(C74SUPPORT)/max-includes/macho-prefix.pch
 INFOPLIST_FILE = src/Info.plist
 
-
 // Architecture and Deployment
-ARCHS = i386 x86_64
+ARCHS = $(ARCHS_STANDARD)
 
 // The following section sets the Mac SDK version to be used.
 // For most projects this has little to no impact because there are no direct dependencies on OS function calls.
@@ -46,15 +37,12 @@ ARCHS = i386 x86_64
 
 MACOSX_DEPLOYMENT_TARGET = 10.7
 
-
 // Compiler Version -- leave them all commented out to get the default version provided by Xcode
 // GCC_VERSION = com.apple.compilers.llvmgcc42
 // GCC_VERSION = com.apple.compilers.llvm.clang.1_0
 
-
 // Preprocessor Defines
 GCC_PREPROCESSOR_DEFINITIONS = "DENORM_WANT_FIX = 1" "NO_TRANSLATION_SUPPORT = 1"
-
 
 // Static Configuration (don't change these)
 WRAPPER_EXTENSION = mxo;
@@ -62,16 +50,11 @@ WARNING_CFLAGS = -Wmost -Wno-four-char-constants -Wno-unknown-pragmas
 DEPLOYMENT_LOCATION = YES
 GENERATE_PKGINFO_FILE = YES
 
-
 // Flags to enforce some build-time checks for the symbols used while not actually performing a hard link
 C74_SYM_LINKER_FLAGS = @$(C74SUPPORT)/max-includes/c74_linker_flags.txt
-
 
 // hide all symbols by default
 // mark a function to be exported with the C74_EXPORT macro
 // most likely this will only apply to the ext_main() function which we've already prototyped for you
 OTHER_CFLAGS = -fvisibility=hidden
-
 OTHER_LDFLAGS = -framework MaxAudioAPI -framework JitterAPI $(C74_SYM_LINKER_FLAGS)
-
-
