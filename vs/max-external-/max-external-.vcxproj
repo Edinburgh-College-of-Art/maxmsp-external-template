@@ -20,7 +20,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{FD706F7D-FA31-4B2C-9AD4-AD3A5D30827E}</ProjectGuid>
-    <ProjectName>max-external-</ProjectName>
+    <ProjectName>max-external~</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
