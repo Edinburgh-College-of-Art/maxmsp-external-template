@@ -19,8 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{D7D2B050-0FAC-4326-89AD-C82254541416}</ProjectGuid>
-    <ProjectName>max-external</ProjectName>
+    <ProjectGuid>{FD706F7D-FA31-4B2C-9AD4-AD3A5D30827E}</ProjectGuid>
+    <ProjectName>max-external-</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -267,12 +267,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="$(C74SUPPORT)\max-includes\common\dllmain_win.c" />
-    <ClCompile Include="..\src\max-external\main.c" />
+    <ClCompile Include="..\..\src\max-external-\main.c" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="max-external\max_extern_common.props" />
-    <None Include="max-external\max_extern_x64.props" />
-    <None Include="max-external\max_extern_x86.props" />
+    <None Include="max_extern_common.props" />
+    <None Include="max_extern_x64.props" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

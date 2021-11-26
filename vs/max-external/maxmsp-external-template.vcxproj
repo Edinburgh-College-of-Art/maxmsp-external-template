@@ -267,7 +267,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="$(C74SUPPORT)\max-includes\common\dllmain_win.c" />
-    <ClCompile Include="..\src\max-external\main.c" />
+    <ClCompile Include="..\..\src\max-external\main.c" />
   </ItemGroup>
   <ItemGroup>
     <None Include="max_extern_common.props" />
