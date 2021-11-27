@@ -1,5 +1,5 @@
 /*
- A template for a basic max external object with more explicit documentation
+ A template for a basic MSP external object with more explicit documentation
  
  See Readme of repository for build instructions.
  Create an Issue on the repository if anything is amiss or you have any suggestion
@@ -8,7 +8,6 @@
 #include "ext.h"
 #include "ext_obex.h"
 #include "z_dsp.h"
-#include "buffer.h"
 //------------------------------------------------------------------------------
 
 /// void* to the complete new Max External class so that it can be used in the class methods
@@ -18,25 +17,25 @@
 static t_class* myExternClass;
 
 //------------------------------------------------------------------------------
-/** @struct
- The MaxMSP object
- */
-typedef struct _MaxExternalObject
+/// @struct MSPExternalObject
+/// @abstract The MaxMSP object
+/// @field externalMspObject Header for the MSP object
+typedef struct _MSPExternalObject
 {
-    t_pxobject x_obj;
-} MaxExternalObject;
+    t_pxobject externalMspObject;
+} MSPExternalObject;
 
 //------------------------------------------------------------------------------
-/// External Object Constructor: use this to setup any variables / properties of your DSP Struct or MaxExternalObject
+/// External Object Constructor: use this to setup any variables / properties of your DSP Struct or MSPExternalObject
 /// Arguement list should be as long as the list of type arguments passed in the class_new call below.
 /// @param s argument symbol
 /// @param argc number of arguments
 /// @param argv argument vector
-/// @returns a void* to an instance of the MaxExternalObject
-MaxExternalObject* myExternalConstructor(t_symbol *s, long argc, t_atom *argv)
+/// @returns a void* to an instance of the MSPExternalObject
+MSPExternalObject* myExternalConstructor(t_symbol *s, long argc, t_atom *argv)
 {
     //--------------------------------------------------------------------------
-    MaxExternalObject* maxObjectPtr = (MaxExternalObject*)object_alloc(myExternClass);
+    MSPExternalObject* maxObjectPtr = (MSPExternalObject*)object_alloc(myExternClass);
     dsp_setup((t_pxobject*)maxObjectPtr, 1);
     //--------------------------------------------------------------------------
     outlet_new((t_object*)maxObjectPtr, "signal");
@@ -45,7 +44,7 @@ MaxExternalObject* myExternalConstructor(t_symbol *s, long argc, t_atom *argv)
 
 //------------------------------------------------------------------------------
 /// @brief what happens when the object is deleted
-void myExternDestructor(MaxExternalObject* maxObjectPtr)
+void myExternDestructor(MSPExternalObject* maxObjectPtr)
 {
     dsp_free((t_pxobject*)maxObjectPtr);
 }
@@ -62,7 +61,7 @@ void myExternDestructor(MaxExternalObject* maxObjectPtr)
 /// @param sampleframes samples per channel
 /// @param flags
 /// @param userparam no idea
-void mspExternalProcessBlock(MaxExternalObject* maxObjectPtr, t_object* dsp64,
+void mspExternalProcessBlock(MSPExternalObject* maxObjectPtr, t_object* dsp64,
                              double** ins, long numins, double** outs, long numouts,
                              long sampleframes, long flags, void* userparam)
 
@@ -79,7 +78,7 @@ void mspExternalProcessBlock(MaxExternalObject* maxObjectPtr, t_object* dsp64,
 /// @param samplerate
 /// @param vectorsize
 /// @param flags
-void prepareToPlay(MaxExternalObject* maxObjectPtr, t_object* dsp64, short* count,
+void prepareToPlay(MSPExternalObject* maxObjectPtr, t_object* dsp64, short* count,
                    double samplerate, long vectorsize, long flags)
 {
     object_method(dsp64,
@@ -104,7 +103,7 @@ int C74_EXPORT main(void)
     t_class* c = class_new("max-external~",
                            (method)myExternalConstructor,
                            (method)myExternDestructor,
-                           (short)sizeof(MaxExternalObject),
+                           (short)sizeof(MSPExternalObject),
                            0L,
                            A_GIMME,
                            0);
