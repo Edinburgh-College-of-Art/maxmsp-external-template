@@ -7,6 +7,10 @@
 
 #include "MattsOscs.hpp"
 
+Phasor::~Phasor()
+{
+    
+}
 
 float Phasor::updatePhase()
 {

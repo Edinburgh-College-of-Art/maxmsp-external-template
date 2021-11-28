@@ -94,9 +94,9 @@
 		58567A3A242A0A0A00271066 /* mspcpp */ = {
 			isa = PBXGroup;
 			children = (
-				583DCAC5242CB50400F108D5 /* utilities */,
-				58567A3B242A0A0A00271066 /* cpp_files */,
 				58567A41242A0A0A00271066 /* main.c */,
+				58567A3B242A0A0A00271066 /* cpp_files */,
+				583DCAC5242CB50400F108D5 /* utilities */,
 			);
 			path = mspcpp;
 			sourceTree = "<group>";
@@ -105,8 +105,8 @@
 			isa = PBXGroup;
 			children = (
 				58567A3C242A0A0A00271066 /* MattsOscsCinterface.h */,
-				58567A3D242A0A0A00271066 /* MattsOscs.hpp */,
 				58567A3E242A0A0A00271066 /* MattsOscsCinterface.cpp */,
+				58567A3D242A0A0A00271066 /* MattsOscs.hpp */,
 				58567A3F242A0A0A00271066 /* MattsOscs.cpp */,
 			);
 			path = cpp_files;
@@ -418,6 +418,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5868BA8D241A6C1600152060 /* maxmspsdk.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				C74_SYM_LINKER_FLAGS = "@$(C74SUPPORT)/max-includes/c74_linker_flags.txt\"";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -435,6 +436,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5868BA8D241A6C1600152060 /* maxmspsdk.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				C74_SYM_LINKER_FLAGS = "@$(C74SUPPORT)/max-includes/c74_linker_flags.txt\"";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_CXX_LIBRARY = "libc++";

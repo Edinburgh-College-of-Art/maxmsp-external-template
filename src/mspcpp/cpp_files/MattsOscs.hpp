@@ -13,6 +13,7 @@
 class Phasor
 {
 public:
+    virtual ~Phasor();
     float updatePhase();
     virtual double process();
     void setSampleRate(float sr);
