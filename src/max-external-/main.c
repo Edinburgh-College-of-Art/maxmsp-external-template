@@ -32,7 +32,7 @@ typedef struct _MSPExternalObject
 /// @param argc number of arguments
 /// @param argv argument vector
 /// @returns a void* to an instance of the MSPExternalObject
-MSPExternalObject* myExternalConstructor(t_symbol *s, long argc, t_atom *argv)
+void* myExternalConstructor(t_symbol *s, long argc, t_atom *argv)
 {
     //--------------------------------------------------------------------------
     MSPExternalObject* maxObjectPtr = (MSPExternalObject*)object_alloc(myExternClass);

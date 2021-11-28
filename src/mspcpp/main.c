@@ -22,49 +22,32 @@ void* myExternClass;
 
 //------------------------------------------------------------------------------
 /// DSP object properties
-typedef struct _MyDspStruct
-{
-    float a;
-} MyDspStruct;
-
 /** @struct
  The MaxMSP object
  @field t_pxobject x_obj
- @field t_symbol* x_arrayname
  @field SineOsc* x_osc pointer to our DSP object. use this with the interfacing C functions
  @field short inletConnection number of connections
  */
 typedef struct _MaxExternalObject
 {
-    ///
-    t_pxobject x_obj;
-    ///
-    t_symbol* x_arrayname;
+    /// Header for the MSP object
+    t_pxobject externalMspObject;
     /// pointer to our DSP object. use this with the interfacing C functions
     SineOsc* sineOsc;
-    ///
-    short inletConnection;
 } MaxExternalObject;
 //------------------------------------------------------------------------------
 /// External Object Constructor: use this to setup any variables / properties of your DSP Struct or MaxExternalObject
 /// Arguement list should be as long as the list of type arguments passed in the class_new call below.
 /// @param arg1 first argument to object: should match type given in class_new(...)
 /// @returns a void* to an instance of the MaxExternalObject
-void* myExternalConstructor(long arg1)
+void* myExternalConstructor(t_symbol *s, long argc, t_atom *argv)
 {
-    //--------------------------------------------------------------------------
-    if (!arg1)
-    {
-        post("no arguement\n");
-    }
-    
     //--------------------------------------------------------------------------
     MaxExternalObject* maxObjectPtr = (MaxExternalObject*)object_alloc(myExternClass);
     maxObjectPtr->sineOsc = newSineOsc();
     
     dsp_setup((t_pxobject*)maxObjectPtr, 1);
     //--------------------------------------------------------------------------
-    // inlet_new((t_object*)maxObjectPtr, "signal");
     outlet_new((t_object*)maxObjectPtr, "signal");
     //--------------------------------------------------------------------------
     return maxObjectPtr;
@@ -74,6 +57,7 @@ void* myExternalConstructor(long arg1)
 ///
 void myExternDestructor(MaxExternalObject* maxObjectPtr)
 {
+    deleteSineOsc(maxObjectPtr->sineOsc);
     dsp_free((t_pxobject*)maxObjectPtr);
 }
 //------------------------------------------------------------------------------
@@ -91,38 +75,7 @@ void inletAssistant(MaxExternalObject* maxObjectPtr,
                     long arg,
                     char *dstString)
 {
-    const long  inletMessage = 1;
-    const long outletMessage = 2;
-    
-    switch (message)
-    {
-        case 1:
-            switch (arg)
-            {
-                case 0:
-                    sprintf(dstString, "(bang/list/message/float) float sets frequency");
-                    break;
-                case 1:
-                    sprintf(dstString, "inlet 2");
-                    break;
-                default:
-                    sprintf(dstString, "some other inlet");
-            }
-            break;
-        case 2:
-            switch (arg)
-            {
-                case 0:
-                    sprintf(dstString, "(signal) oscillator output");
-                    break;
-                case 1:
-                    sprintf(dstString, "outlet 2");
-                    break;
-                default:
-                    sprintf(dstString, "some other outlet");
-            }
-            break;
-    }
+
 }
 
 //------------------------------------------------------------------------------
@@ -164,8 +117,7 @@ void mspExternalProcessBlock(MaxExternalObject* maxObjectPtr, t_object* dsp64,
 /// @param flags
 void prepareToPlay(MaxExternalObject* maxObjectPtr, t_object* dsp64, short* count,
                    double samplerate, long vectorsize, long flags)
-{
-    maxObjectPtr->inletConnection = count[0];
+{           
     SineOsc_setup(maxObjectPtr->sineOsc, samplerate, 440.0);
     
     object_method(dsp64,
@@ -181,7 +133,7 @@ void prepareToPlay(MaxExternalObject* maxObjectPtr, t_object* dsp64, short* coun
 /// @param maxObjectPtr object pointer
 void onBang(MaxExternalObject* maxObjectPtr)
 {
-    post("I got a bang!\n");
+  
 }
 
 //------------------------------------------------------------------------------
@@ -205,32 +157,14 @@ void onList(MaxExternalObject* maxObjectPtr,
             short argc,
             t_atom *argv)
 {
-    for (int i = 0; i < argc; ++i)
-    {
-        t_atom *ap = &argv[i];
-        switch (atom_gettype(ap))
-        {
-        case A_LONG:
-            post("type: int, index: %ld, value: %ld",i+1, atom_getlong(ap));
-            break;
-        case A_FLOAT:
-            post("type: float, index: %ld, value: %.2f",i+1, atom_getfloat(ap));
-            break;
-        case A_SYM:
-            post("type: message , index: %ld, value: %s",i+1, atom_getsym(ap)->s_name);
-            break;
-        default:
-            post("%ld: unknown atom type (%ld)", i+1, atom_gettype(ap));
-            break;
-        }
-    }
+  
 }
 
 //------------------------------------------------------------------------------
 
 void onPrintMessage(MaxExternalObject* x)
 {
-    post("Print some info about the object\n");
+
 }
 
 //------------------------------------------------------------------------------
@@ -242,9 +176,6 @@ void onPrintMessage(MaxExternalObject* x)
 /// @param argv array of atoms holding the arguments.
 void onAnyMessage(MaxExternalObject* maxObjectPtr, t_symbol *s, long argc, t_atom *argv)
 {
-    object_post( (t_object*)maxObjectPtr,
-                "This method was invoked by sending the ’%s’ message to this object.",
-                s->s_name);
 }
 
 //------------------------------------------------------------------------------
@@ -268,7 +199,7 @@ int C74_EXPORT main(void)
                            (method)myExternDestructor,
                            (short)sizeof(MaxExternalObject),
                            0L,
-                           A_DEFLONG,
+                           A_GIMME,
                            0);
     
     coupleMethodsToExternal(c);
