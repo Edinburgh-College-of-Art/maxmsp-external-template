@@ -7,15 +7,13 @@
  */
 #include "ext.h"
 #include "ext_obex.h"
-#include "z_dsp.h"
-#include "buffer.h"
 //------------------------------------------------------------------------------
 
 /// void* to the complete new Max External class so that it can be used in the class methods
 /// This will be set to t_class* in the main function
 /// @code t_class* c = class_new(...);
 /// myExternClass = c;
-void* myExternClass;
+static t_class* myExternClass;
 
 //------------------------------------------------------------------------------
 /** @struct
@@ -23,46 +21,29 @@ void* myExternClass;
  */
 typedef struct _MaxExternalObject
 {
-    t_pxobject x_obj;
-    t_symbol* x_arrayname;
-    short inletConnection;
-    double gain;
+    t_object externalMaxObject;
 } MaxExternalObject;
 //------------------------------------------------------------------------------
 /// External Object Constructor: use this to setup any variables / properties of your DSP Struct or MaxExternalObject
 /// Arguement list should be as long as the list of type arguments passed in the class_new call below.
 /// @param arg1 first argument to object: should match type given in class_new(...)
 /// @returns a void* to an instance of the MaxExternalObject
-MaxExternalObject* myExternalConstructor(t_symbol *s, long argc, t_atom *argv)
+void* myExternalConstructor(t_symbol *s, long argc, t_atom *argv)
 {
     //--------------------------------------------------------------------------
-    if (argc)
-        post("Number of Arguments: %ld", argc);
-    else
-        post("No Argument Given");
-    
-    //--------------------------------------------------------------------------
     MaxExternalObject* maxObjectPtr = (MaxExternalObject*)object_alloc(myExternClass);
-    dsp_setup((t_pxobject*)maxObjectPtr, 1);
     //--------------------------------------------------------------------------
-    // inlet_new((t_object*)maxObjectPtr, "signal");
-    outlet_new((t_object*)maxObjectPtr, "signal");
-    //--------------------------------------------------------------------------
-    maxObjectPtr->gain = 1.0;
     return maxObjectPtr;
 }
 
 //------------------------------------------------------------------------------
 /// @brief what happens when the object is deleted
 void myExternDestructor(MaxExternalObject* maxObjectPtr)
-{
-    post("Object Destoryed");
-    dsp_free((t_pxobject*)maxObjectPtr);
+{    
 }
 //------------------------------------------------------------------------------
 
-/// @brief This is the function called by MAX/MSP when the cursor is over an inlet or
-/// outlet.
+/// @brief This is the function called by Max when the cursor is over an inlet or outlet.
 /// @param maxObjectPtr object pointer
 /// @param box still don't know what this is
 /// @param message either inlet  1 or outlet 2
@@ -74,42 +55,6 @@ void inletAssistant(MaxExternalObject* maxObjectPtr,
                     long arg,
                     char *dstString)
 {
-    typedef enum _TypeOfConnectionMessage
-    {
-        inletMessage = 1,
-        outletMessage = 2
-    } TypeOfConnectionMessage;
-    
-    
-    switch ((TypeOfConnectionMessage)message)
-    {
-        case inletMessage:
-            switch (arg)
-            {
-                case 0:
-                    sprintf(dstString, "inlet 1");
-                    break;
-                case 1:
-                    sprintf(dstString, "inlet 2");
-                    break;
-                default:
-                    sprintf(dstString, "some other inlet");
-            }
-            break;
-        case outletMessage:
-            switch (arg)
-            {
-                case 0:
-                    sprintf(dstString, "outlet 1");
-                    break;
-                case 1:
-                    sprintf(dstString, "outlet 2");
-                    break;
-                default:
-                    sprintf(dstString, "some other outlet");
-            }
-            break;
-    }
 }
 
 //------------------------------------------------------------------------------
@@ -118,7 +63,6 @@ void inletAssistant(MaxExternalObject* maxObjectPtr,
 /// @param maxObjectPtr object pointer
 void onBang(MaxExternalObject* maxObjectPtr)
 {
-    post("I got a bang!\n");
 }
 
 /// This gets called when we receive a float
@@ -126,7 +70,6 @@ void onBang(MaxExternalObject* maxObjectPtr)
 /// @param floatIn 
 void onFloat(MaxExternalObject* maxObjectPtr, double floatIn)
 {
-    maxObjectPtr->gain = floatIn;
 }
 //------------------------------------------------------------------------------
 
@@ -140,17 +83,12 @@ void onList(MaxExternalObject* maxObjectPtr,
             short argc,
             t_atom *argv)
 {
-    for (int i = 0; i < argc; ++i)
-    {
-        atom_getfloatarg(i, argc, argv);
-    }
 }
 
 //------------------------------------------------------------------------------
 
 void onPrintMessage(MaxExternalObject* x)
 {    
-    post("Print some info about the object\n");
 }
 
 //------------------------------------------------------------------------------
@@ -162,9 +100,6 @@ void onPrintMessage(MaxExternalObject* x)
 /// @param argv array of atoms holding the arguments.
 void onAnyMessage(MaxExternalObject* maxObjectPtr, t_symbol *s, long argc, t_atom *argv)
 {
-    object_post( (t_object*)maxObjectPtr,
-                "This method was invoked by sending the ’%s’ message to this object.",
-                s->s_name);
 }
 
 //------------------------------------------------------------------------------
@@ -182,8 +117,6 @@ void coupleMethodsToExternal( t_class* c)
 //------------------------------------------------------------------------------
 int C74_EXPORT main(void)
 {
-    post("Hello Max!");
-    
     t_class* c = class_new("max-external",
                            (method)myExternalConstructor,
                            (method)myExternDestructor,
