@@ -40,10 +40,25 @@ You should be able to build straight away from the Xcode project or the Visual S
 
 Build configuration is slightly different depending on which IDE you are using. For Visual Studio you should be looking at the [property sheets](https://docs.microsoft.com/en-us/cpp/build/working-with-project-properties?view=vs-2019) and for Xcode the [`.xcconfig`](https://nshipster.com/xcconfig/).
 
+The build destination for each project is set to the default user Max Packages directory.
+
+**macOS**:
+
+```
+~/Max 8/Packages/$(Project_Name)/externals
+```
+
+**Windows**:
+
+```
+$(USERPROFILE)\Documents\Max 8\Packages\$(ProjectName)\externals
+```
+
+This means you should be able to use your object in Max immediately after building, though Max will require a restart.
 
 ### maxmspsdk.xcconfig
 
-The `maxmspsdk.xcconfig` in the `xcode` directory sets a couple of global paths in the Xcode project.
+The `maxmspsdk.xcconfig` in the `xcode` directory sets a couple of global paths in the Xcode project. `DSTROOT` sets the build destination.
 
 ### .prop sheets
 
@@ -78,25 +93,6 @@ To edit the property sheets in visual studio:
 4. navigate to user macros
 
 ![User Macros](images/user-macros.png)
-
-
-### Max Setup
-
-The build destination for each project is set to the default user Max Packages directory.
-
-**macOS**:
-
-```
-~/Max 8/Packages/$(Project_Name)/externals
-```
-
-**Windows**:
-
-```
-$(USERPROFILE)\Documents\Max 8\Packages\$(ProjectName)\externals
-```
-
-This means you should be able to use your object in Max immediately after building, though Max will require a restart.
 
 ***
 
