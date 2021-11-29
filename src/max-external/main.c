@@ -45,12 +45,12 @@ void myExternDestructor(MaxExternalObject* maxObjectPtr)
 
 /// @brief This is the function called by Max when the cursor is over an inlet or outlet.
 /// @param maxObjectPtr object pointer
-/// @param box still don't know what this is
+/// @param jbox pointer to the object box in the patcher. Use jbox methods to query
 /// @param message either inlet  1 or outlet 2
 /// @param arg inlet / outlet index
 /// @param dstString pointer to destination: limited to 60 chars.
 void inletAssistant(MaxExternalObject* maxObjectPtr,
-                    void *box,
+                    void *jbox,
                     long message,
                     long arg,
                     char *dstString)
