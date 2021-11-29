@@ -10,10 +10,9 @@ Template Projects for [building external objects in MaxMSP](https://cycling74.co
 	- [Configuration](#configuration)
 		- [maxmspsdk.xcconfig](#maxmspsdkxcconfig)
 		- [.prop sheets](#prop-sheets)
-		- [Max Setup](#max-setup)
-		- [Change sdk Version](#change-sdk-version)
 	- [Projects](#projects)
 		- [max-external](#max-external)
+		- [max-external~](#max-external)
 		- [mspcpp](#mspcpp)
 
 <!-- /TOC -->
