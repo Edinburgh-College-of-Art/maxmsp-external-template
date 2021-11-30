@@ -12,6 +12,7 @@
 // Name & Version
 PRODUCT_NAME = $(TARGET_NAME)
 PRODUCT_VERSION = 1.0.0
+PRODUCT_BUNDLE_IDENTIFIER = com.cycling74.$(PRODUCT_NAME)
 
 // Paths
 C74SUPPORT = max-sdk-base/c74support
